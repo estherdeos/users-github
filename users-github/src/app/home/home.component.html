@@ -1,0 +1,48 @@
+<div class="container">
+  <h1 class="my-4 text-center">Usuários do Github</h1>
+  <form [formGroup]="form">
+    <div class="row gap-4 align-items-end">
+      <div class="form-group col-md-4 col-9">
+        <label for="username">Nome de usuário</label>
+        <input
+          #usernameField
+          type="text"
+          class="form-control"
+          id="username"
+          placeholder="Digite o nome de usuário desejado"
+          formControlName="username"
+        />
+      </div>
+      <div class="spinner-border" *ngIf="loading" role="status"></div>
+    </div>
+  </form>
+
+  <hr />
+  <div *ngIf="users.length">
+    <div class="row row-gap-4">
+      <div class="col-12 col-md-4" *ngFor="let user of users">
+        <div class="card">
+          <div class="card-body">
+            <div class="row align-items-center mb-3">
+              <img class="rounded-circle col-2" [src]="user.avatar_url" />
+              <h5 class="card-title col-10">{{ user.login }}</h5>
+            </div>
+            <button class="btn btn-primary" (click)="openDetails(user.login)">
+              Ver detalhes
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <ngb-pagination
+      class="d-flex justify-content-center mt-4"
+      [ellipses]="true"
+      [maxSize]="3"
+      [pageSize]="pageSize"
+      [collectionSize]="collectionSize"
+      [(page)]="page"
+      (pageChange)="getUsers()"
+      aria-label="Default pagination"
+    ></ngb-pagination>
+  </div>
+</div>
