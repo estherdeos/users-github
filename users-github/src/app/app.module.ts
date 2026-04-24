@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbPaginationModule, NgbAlert } from '@ng-bootstrap/ng-bootstrap';
 import { DetailsComponent } from './details/details.component';
 
 @NgModule({
@@ -18,6 +18,7 @@ import { DetailsComponent } from './details/details.component';
     FormsModule,
     ReactiveFormsModule,
     NgbPaginationModule,
+    NgbAlert,
   ],
   providers: [],
   bootstrap: [AppComponent],

@@ -9,6 +9,7 @@ import { UsersService } from '../services/users/users.service';
 import { debounceTime, fromEvent, map, take } from 'rxjs';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { IUser } from '../interfaces/user.model';
 
 @Component({
   selector: 'app-home',
@@ -28,13 +29,15 @@ export class HomeComponent implements AfterViewInit {
   });
 
   @ViewChild('usernameField') usernameField!: ElementRef<HTMLInputElement>;
+
   loading: boolean = false;
-  users: any[] = [];
-  usersOnPage: any[] = [];
+  users: IUser[] = [];
 
   page: number = 1;
   pageSize: number = 12;
   collectionSize: number = 0;
+
+  showErrorMessage: boolean = false;
 
   ngAfterViewInit(): void {
     fromEvent(this.usernameField.nativeElement, 'input')
@@ -63,6 +66,9 @@ export class HomeComponent implements AfterViewInit {
           this.collectionSize = res.total_count;
           this.loading = false;
         },
+        error: () => {
+          this.showErrorMessage = true;
+        },
       });
   }
 
@@ -70,5 +76,9 @@ export class HomeComponent implements AfterViewInit {
     this.router.navigate([`detalhes/${username}`], {
       relativeTo: this.activatedRoute,
     });
+  }
+
+  closeErrorMessage(): void {
+    this.showErrorMessage = false;
   }
 }

@@ -18,10 +18,18 @@
   </form>
 
   <hr />
+
+  <ngb-alert
+    type="danger"
+    *ngIf="showErrorMessage"
+    (closed)="closeErrorMessage()"
+    >Ocorreu um erro ao obter os dados. Por favor, tente novamente.</ngb-alert
+  >
+
   <div *ngIf="users.length">
     <div class="row row-gap-4">
       <div class="col-12 col-md-4" *ngFor="let user of users">
-        <div class="card">
+        <div class="card h-100">
           <div class="card-body">
             <div class="row align-items-center mb-3">
               <img class="rounded-circle col-2" [src]="user.avatar_url" />
@@ -42,7 +50,6 @@
       [collectionSize]="collectionSize"
       [(page)]="page"
       (pageChange)="getUsers()"
-      aria-label="Default pagination"
     ></ngb-pagination>
   </div>
 </div>

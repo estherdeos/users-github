@@ -1,1 +1,32 @@
-<p>details works!</p>
+<div class="container pb-4">
+  <h1 class="my-4 text-center">{{ username }}</h1>
+  <div class="d-flex justify-content-center">
+    <div class="spinner-border" *ngIf="loading" role="status"></div>
+  </div>
+
+  <ngb-alert
+    type="danger"
+    *ngIf="showErrorMessage"
+    (closed)="closeErrorMessage()"
+    >Ocorreu um erro ao obter os dados. Por favor, tente novamente.</ngb-alert
+  >
+
+  <div *ngIf="repos.length && !loading">
+    <div class="row row-gap-4">
+      <div class="col-12 col-md-4" *ngFor="let repo of repos">
+        <div class="card h-100">
+          <div class="card-body">
+            <div class="row align-items-center mb-3">
+              <h5 class="card-title col-10">{{ repo.name }}</h5>
+              <small>Forks: {{ repo.forks_count }}</small>
+              <small>Stars: {{ repo.stargazers_count }}</small>
+            </div>
+            <a class="btn btn-primary" [href]="repo.html_url" target="_blank">
+              Ir para repositório
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
