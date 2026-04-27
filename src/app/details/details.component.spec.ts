@@ -10,15 +10,18 @@ import { DetailsComponent } from './details.component';
 import { RouterTestingModule } from '@angular/router/testing';
 import { IRepository } from '../interfaces/repository.model';
 import { of, throwError } from 'rxjs';
-import { ActivatedRoute, convertToParamMap } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { UsersService } from '../services/users/users.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { By } from '@angular/platform-browser';
 import { NgbAlertModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgIconsModule } from '@ng-icons/core';
+import { octMarkGithub, octRepoForked, octStar } from '@ng-icons/octicons';
 
 describe('DetailsComponent', () => {
   let component: DetailsComponent;
   let fixture: ComponentFixture<DetailsComponent>;
+  let router: Router;
 
   const mockedUsersService = jasmine.createSpyObj('UsersService', [
     'getReposByUsername',
@@ -35,7 +38,12 @@ describe('DetailsComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [HttpClientTestingModule, RouterTestingModule, NgbAlertModule],
+      imports: [
+        HttpClientTestingModule,
+        RouterTestingModule,
+        NgbAlertModule,
+        NgIconsModule.withIcons({ octMarkGithub, octRepoForked, octStar }),
+      ],
       declarations: [DetailsComponent],
       providers: [
         {
@@ -56,6 +64,7 @@ describe('DetailsComponent', () => {
     mockedUsersService.getReposByUsername.and.returnValue(of(reposRes));
 
     fixture = TestBed.createComponent(DetailsComponent);
+    router = TestBed.inject(Router);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
@@ -110,4 +119,18 @@ describe('DetailsComponent', () => {
 
     expect(component.showErrorMessage).toBe(false);
   });
+
+  it('should go back to homepage', fakeAsync(() => {
+    const navigateSpy = spyOn(router, 'navigate');
+
+    const btnGoBack = fixture.debugElement.query(
+      By.css('#btn-go-back'),
+    ).nativeElement;
+    btnGoBack.click();
+
+    tick();
+    fixture.detectChanges();
+
+    expect(navigateSpy).toHaveBeenCalledWith(['/']);
+  }));
 });

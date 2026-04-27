@@ -8,6 +8,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgbPaginationModule, NgbAlert } from '@ng-bootstrap/ng-bootstrap';
 import { DetailsComponent } from './details/details.component';
+import { NgIconsModule } from '@ng-icons/core';
+import { octMarkGithub, octRepoForked, octStar } from '@ng-icons/octicons';
 
 @NgModule({
   declarations: [AppComponent, HomeComponent, DetailsComponent],
@@ -19,6 +21,7 @@ import { DetailsComponent } from './details/details.component';
     ReactiveFormsModule,
     NgbPaginationModule,
     NgbAlert,
+    NgIconsModule.withIcons({ octMarkGithub, octRepoForked, octStar }),
   ],
   providers: [],
   bootstrap: [AppComponent],

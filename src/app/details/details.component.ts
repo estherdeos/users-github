@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UsersService } from '../services/users/users.service';
 import { take } from 'rxjs';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { IRepository } from '../interfaces/repository.model';
 
 @Component({
@@ -13,6 +13,7 @@ export class DetailsComponent implements OnInit {
   constructor(
     private readonly usersService: UsersService,
     private readonly activatedRoute: ActivatedRoute,
+    private readonly router: Router,
   ) {
     this.username = this.activatedRoute.snapshot.params['username'];
   }
@@ -46,5 +47,9 @@ export class DetailsComponent implements OnInit {
 
   closeErrorMessage(): void {
     this.showErrorMessage = false;
+  }
+
+  goBack(): void {
+    this.router.navigate(['/']);
   }
 }

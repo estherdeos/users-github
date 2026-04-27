@@ -19,6 +19,8 @@ import { By } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { ISearchUsers } from '../interfaces/search-users.model';
 import { HttpErrorResponse } from '@angular/common/http';
+import { NgIconsModule } from '@ng-icons/core';
+import { octMarkGithub, octRepoForked, octStar } from '@ng-icons/octicons';
 
 describe('HomeComponent', () => {
   let component: HomeComponent;
@@ -47,6 +49,7 @@ describe('HomeComponent', () => {
         ReactiveFormsModule,
         NgbPaginationModule,
         NgbAlertModule,
+        NgIconsModule.withIcons({ octMarkGithub, octRepoForked, octStar }),
       ],
       declarations: [HomeComponent],
       providers: [

@@ -1,12 +1,6 @@
-import {
-  AfterViewInit,
-  Component,
-  ElementRef,
-  OnInit,
-  ViewChild,
-} from '@angular/core';
+import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
 import { UsersService } from '../services/users/users.service';
-import { debounceTime, fromEvent, map, take } from 'rxjs';
+import { debounceTime, fromEvent, take } from 'rxjs';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { IUser } from '../interfaces/user.model';
