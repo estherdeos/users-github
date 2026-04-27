@@ -1,27 +1,65 @@
-# UsersGithub
+# Usuários do GitHub
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.2.11.
+Aplicação web desenvolvida em Angular para busca de usuários do GitHub. É possível pesquisar por nome de usuário e visualizar os repositórios públicos de cada perfil encontrado.
 
-## Development server
+---
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+## Pré-requisitos
 
-## Code scaffolding
+Antes de começar, certifique-se de ter instalado em sua máquina:
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+- [Node.js](https://nodejs.org/) (versão 18 ou superior)
+- [Angular CLI](https://angular.io/cli)
 
-## Build
+```bash
+npm install -g @angular/cli
+```
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+---
 
-## Running unit tests
+## Como rodar localmente
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+**1. Clone o repositório**
 
-## Running end-to-end tests
+```bash
+git clone https://github.com/estherdeos/users-github.git
+```
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+**2. Acesse a pasta do projeto**
 
-## Further help
+```bash
+cd users-github
+```
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+**3. Instale as dependências**
+
+```bash
+npm install
+```
+
+**4. Inicie o servidor de desenvolvimento**
+
+```bash
+npm start
+```
+
+**5. Acesse no navegador**
+
+```
+http://localhost:4200
+```
+
+---
+
+## Como rodar os testes
+
+```bash
+ng test
+```
+
+---
+
+## Funcionalidades
+
+- Busca de usuários do GitHub pelo nome de usuário
+- Listagem dos repositórios públicos do usuário selecionado

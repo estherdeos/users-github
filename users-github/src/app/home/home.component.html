@@ -35,7 +35,11 @@
               <img class="rounded-circle col-2" [src]="user.avatar_url" />
               <h5 class="card-title col-10">{{ user.login }}</h5>
             </div>
-            <button class="btn btn-primary" (click)="openDetails(user.login)">
+            <button
+              id="btn-details"
+              class="btn btn-primary"
+              (click)="openDetails(user.login)"
+            >
               Ver detalhes
             </button>
           </div>

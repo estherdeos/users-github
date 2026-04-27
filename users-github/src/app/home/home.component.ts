@@ -8,8 +8,9 @@ import {
 import { UsersService } from '../services/users/users.service';
 import { debounceTime, fromEvent, map, take } from 'rxjs';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { IUser } from '../interfaces/user.model';
+import { ISearchUsers } from '../interfaces/search-users.model';
 
 @Component({
   selector: 'app-home',
@@ -21,7 +22,6 @@ export class HomeComponent implements AfterViewInit {
     private readonly usersService: UsersService,
     private readonly formBuilder: FormBuilder,
     private readonly router: Router,
-    private readonly activatedRoute: ActivatedRoute,
   ) {}
 
   form: FormGroup = this.formBuilder.group({
@@ -61,7 +61,7 @@ export class HomeComponent implements AfterViewInit {
       )
       .pipe(take(1))
       .subscribe({
-        next: (res) => {
+        next: (res: ISearchUsers) => {
           this.users = res.items;
           this.collectionSize = res.total_count;
           this.loading = false;
@@ -73,9 +73,7 @@ export class HomeComponent implements AfterViewInit {
   }
 
   openDetails(username: string): void {
-    this.router.navigate([`detalhes/${username}`], {
-      relativeTo: this.activatedRoute,
-    });
+    this.router.navigate([`detalhes/${username}`]);
   }
 
   closeErrorMessage(): void {

@@ -34,7 +34,7 @@ export class DetailsComponent implements OnInit {
       .getReposByUsername(this.username)
       .pipe(take(1))
       .subscribe({
-        next: (res) => {
+        next: (res: IRepository[]) => {
           this.repos = res;
           this.loading = false;
         },
